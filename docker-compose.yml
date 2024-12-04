@@ -1,0 +1,18 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: TestProject/Dockerfile # Путь к Dockerfile для фронтенда
+    ports:
+      - "3000:3000" # Проброс порта 3000 для фронтенда
+    depends_on:
+      - backend # Фронтенд зависит от бэкенда
+
+  backend:
+    build:
+      context: .
+      dockerfile: SDUlik/Dockerfile # Путь к Dockerfile для бэкенда
+    ports:
+      - "8080:8080" # Проброс порта 8080 для бэкенда
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod # Пример переменной окружения для Spring Boot
